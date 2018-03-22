@@ -1,0 +1,19 @@
+<div class="content" fxLayout="row" fxLayoutAlign="center">
+
+  <div *ngIf="!loggedId" class="login-container" [style.margin-top]="'45px'">
+    <div id="err" [hidden]="!badCredentials"><small>Error</small></div>
+    <form role="form" (submit)="onSubmit()" #loginForm="ngForm">
+      <mat-form-field>
+        <input matInput required [(ngModel)]="credential.username" id="username" name="username" placeholder="username">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput required [(ngModel)]="credential.password" id="password" name="password" placeholder="password">
+      </mat-form-field><br>
+
+      <br>
+      <button mat-raised-button type="submit" name="login" [style.margin-top]="'14px'" [disabled]="!loginForm.form.valid">login</button><br><br>
+    </form >
+    user / user
+  </div>
+
+</div>
