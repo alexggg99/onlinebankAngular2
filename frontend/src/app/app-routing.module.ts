@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { AdminComponent } from './admin';
 import { LoginGuard } from './guard';
 import { GuestGuard, AdminGuard } from './guard';
 import { NotFoundComponent } from './not-found';
@@ -15,18 +13,18 @@ export const routes: Routes = [
   {
     path:'signup',
     component: SignupComponent,
-    canActivate: [GuestGuard],
+    canActivate: [LoginGuard],
     pathMatch:'full'
   },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [GuestGuard]
+    canActivate: [LoginGuard]
   },
   {
     path: 'change-password',
     component: ChangePasswordComponent,
-    canActivate: [LoginGuard]
+    canActivate: [GuestGuard]
   },
   {
     path: 'index',

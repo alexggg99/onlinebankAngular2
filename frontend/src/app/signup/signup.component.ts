@@ -1,15 +1,12 @@
-import { Inject } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DisplayMessage } from '../shared/models/display-message';
-import { Subscription } from 'rxjs/Subscription';
 import {
   UserService,
   AuthService
 } from '../service';
 
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/SUbject';
 
 @Component({
@@ -69,10 +66,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.ngUnsubscribe.complete();
   }
 
-  repository() {
-    window.location.href = this.githubLink;
-  }
-
   onSubmit() {
     /**
      * Innocent until proven guilty
@@ -85,9 +78,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     .delay(1000)
     .subscribe(data => {
       console.log(data);
-      this.authService.login(this.form.value).subscribe(data =>{
-        this.userService.getMyInfo().subscribe();
-      })
       this.router.navigate([this.returnUrl]);
     },
     error => {

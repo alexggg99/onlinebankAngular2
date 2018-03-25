@@ -1,15 +1,11 @@
-import { Inject } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DisplayMessage } from '../shared/models/display-message';
-import { Subscription } from 'rxjs/Subscription';
 import {
   UserService,
   AuthService
 } from '../service';
-
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/SUbject';
 
 @Component({
@@ -17,10 +13,8 @@ import { Subject } from 'rxjs/SUbject';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   title = 'Login';
-  githubLink = 'https://github.com/bfwg/angular-spring-starter';
-  form: FormGroup;
   private credential = {'username': '', 'password': ''};
 
   /**
@@ -35,8 +29,6 @@ export class LoginComponent implements OnInit, OnDestroy {
    * form request or router
    */
   notification: DisplayMessage;
-
-  returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
@@ -51,37 +43,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe((params: DisplayMessage) => {
-      this.notification = params;
-    });
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.form = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
-    });
-  }
-
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
-
-  onResetCredentials() {
-    this.userService.resetCredentials()
-    .takeUntil(this.ngUnsubscribe)
-    .subscribe(res => {
-      if (res.result === 'success') {
-        alert('Password has been reset to 123 for all accounts');
-      } else {
-        alert('Server error');
-      }
-    });
-  }
-
-  repository() {
-    window.location.href = this.githubLink;
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe((params: DisplayMessage) => {
+        this.notification = params;
+      });
   }
 
   onSubmit() {
@@ -95,8 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     // show me the animation
     .delay(1000)
     .subscribe(data => {
-      this.userService.getMyInfo().subscribe();
-      this.router.navigate([this.returnUrl]);
+      this.router.navigate(['/index']);
     },
     error => {
       this.submitted = false;
