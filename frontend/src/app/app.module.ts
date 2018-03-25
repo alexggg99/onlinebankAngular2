@@ -39,6 +39,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
+import {AccountCardComponent} from "./component/account-card/account-card.component";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -49,6 +50,7 @@ export function initUserFactory(userService: UserService) {
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    AccountCardComponent,
     LoginComponent,
     NotFoundComponent,
     AccountMenuComponent,
