@@ -1,4 +1,4 @@
-package com.busines.model.accounts;
+package com.bfwg.model;
 
 public enum Currency {
 

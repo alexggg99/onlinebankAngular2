@@ -1,4 +1,4 @@
-package com.busines.model.accounts;
+package com.bfwg.model;
 
 import lombok.Getter;
 import lombok.Setter;

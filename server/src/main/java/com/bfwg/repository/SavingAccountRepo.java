@@ -1,6 +1,6 @@
-package com.busines.repo;
+package com.bfwg.repository;
 
-import com.busines.model.accounts.SavingAccount;
+import com.bfwg.model.SavingAccount;
 import org.springframework.transaction.annotation.Transactional;
 
 

@@ -1,7 +1,7 @@
-package com.busines.repo;
+package com.bfwg.repository;
 
-import com.busines.model.accounts.Account;
-import com.busines.model.accounts.Transaction;
+import com.bfwg.model.Account;
+import com.bfwg.model.Transaction;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;

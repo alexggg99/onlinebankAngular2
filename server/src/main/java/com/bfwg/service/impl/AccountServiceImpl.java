@@ -1,12 +1,12 @@
-package com.busines.service.impl;
+package com.bfwg.service.impl;
 
+import com.bfwg.model.*;
+import com.bfwg.service.AccountService;
 import com.bfwg.service.UserService;
-import com.busines.exceptions.GeneralException;
-import com.busines.exceptions.NotEnoughAccountBalance;
-import com.busines.model.accounts.*;
-import com.busines.repo.AccountRepo;
-import com.busines.repo.TransactionRepo;
-import com.busines.service.AccountService;
+import com.bfwg.exception.GeneralException;
+import com.bfwg.exception.NotEnoughAccountBalance;
+import com.bfwg.repository.AccountRepo;
+import com.bfwg.repository.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

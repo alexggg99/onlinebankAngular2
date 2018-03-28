@@ -1,4 +1,4 @@
-package com.busines.model.accounts;
+package com.bfwg.model;
 
 import com.bfwg.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,7 +16,7 @@ import java.util.List;
 public abstract class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private int accountNumber;
     private BigDecimal accountBalance;

@@ -1,6 +1,6 @@
-package com.busines.ctrl.common;
+package com.bfwg.rest.common;
 
-import com.busines.model.accounts.Account;
+import com.bfwg.model.Account;
 import lombok.Getter;
 
 import java.math.BigDecimal;

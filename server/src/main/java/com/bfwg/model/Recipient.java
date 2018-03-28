@@ -1,4 +1,4 @@
-package com.busines.model;
+package com.bfwg.model;
 
 import com.bfwg.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;

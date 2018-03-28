@@ -1,9 +1,7 @@
-package com.busines.service;
+package com.bfwg.service;
 
-import com.busines.model.accounts.Account;
-import com.busines.model.accounts.Currency;
-import com.busines.model.accounts.PrimaryAccount;
-import com.busines.model.accounts.SavingAccount;
+
+import com.bfwg.model.*;
 
 import java.math.BigDecimal;
 import java.util.List;

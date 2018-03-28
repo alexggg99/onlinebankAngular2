@@ -1,6 +1,6 @@
-package com.busines.ctrl;
+package com.bfwg.rest;
 
-import com.busines.exceptions.GeneralException;
+import com.bfwg.exception.GeneralException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

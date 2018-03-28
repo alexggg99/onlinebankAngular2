@@ -1,4 +1,4 @@
-package com.busines.model;
+package com.bfwg.model;
 
 import lombok.Data;
 

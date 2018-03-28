@@ -1,25 +1,15 @@
-package com.busines.ctrl;
+package com.bfwg.rest;
 
-import com.busines.model.accounts.Account;
-import com.busines.model.accounts.PrimaryAccount;
-import com.busines.repo.TransactionRepo;
-import com.busines.service.AccountService;
+import com.bfwg.model.PrimaryAccount;
+import com.bfwg.repository.TransactionRepo;
+import com.bfwg.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @RestController
 @RequestMapping("/account")
@@ -31,8 +21,8 @@ public class AccountController {
     @Autowired
     private TransactionRepo transactionRepo;
 
-    @Value("${app.itemsPerPage}")
-    private int itemsPerPage;
+//    @Value("${app.itemsPerPage}")
+//    private int itemsPerPage;
 
     @RequestMapping("/primaryAccount")
     public PrimaryAccount primaryAccount(@RequestParam("id") int id,

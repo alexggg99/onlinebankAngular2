@@ -1,26 +1,7 @@
-package com.busines.ctrl;
+package com.bfwg.rest;
 
-import com.busines.ctrl.common.DTOaccount;
-import com.busines.exceptions.NotEnoughAccountBalance;
-import com.busines.model.accounts.PrimaryAccount;
-import com.busines.model.accounts.SavingAccount;
-import com.busines.service.AccountService;
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("/transfer")

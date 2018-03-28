@@ -1,4 +1,4 @@
-package com.busines.exceptions;
+package com.bfwg.exception;
 
 public class GeneralException extends RuntimeException {
 }
