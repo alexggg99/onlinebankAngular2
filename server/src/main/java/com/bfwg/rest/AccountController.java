@@ -1,19 +1,22 @@
 package com.bfwg.rest;
 
 import com.bfwg.model.PrimaryAccount;
+import com.bfwg.model.SavingAccount;
+import com.bfwg.model.User;
 import com.bfwg.repository.TransactionRepo;
 import com.bfwg.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
-@RequestMapping("/account")
-public class AccountController {
+@RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE )
+public class AccountController  {
 
     @Autowired
     private AccountService accountService;
@@ -24,17 +27,40 @@ public class AccountController {
 //    @Value("${app.itemsPerPage}")
 //    private int itemsPerPage;
 
-    @RequestMapping("/primaryAccount")
-    public PrimaryAccount primaryAccount(@RequestParam("id") int id,
-                                 @RequestParam("page") int page,
-                                 @RequestParam("filter") String filter,
-                                 Principal principal) {
-//        model.addAttribute("title", "Primary account");
-//        model.addAttribute("servlet", "primaryAccount");
-        PrimaryAccount primaryAccount = (PrimaryAccount) accountService.getPrimaryAccount(id, principal.getName());
-//        complementResponce(model, primaryAccount, filter, principal, page);
-        return primaryAccount;
+    @RequestMapping(value = "/account/primary")
+    public List<PrimaryAccount> getPrimaryAccounts(Principal principal) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        return accountService.getPrimaryAccounts(username);
     }
+
+    @RequestMapping(value = "/account/saving")
+    public List<SavingAccount> getSavingAccounts(Principal principal) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = user.getUsername();
+        return accountService.getSavingAccount(username);
+    }
+
+//    @RequestMapping(value = "/{username}")
+//    public List<Account> getAccountPrimaryAccounts(@PathVariable("username") String username) {
+////        model.addAttribute("title", "Primary account");
+////        model.addAttribute("servlet", "primaryAccount");
+//        List<Account> accounts = accountService.getAllAccounts(username);
+////        complementResponce(model, primaryAccount, filter, principal, page);
+//        return accounts;
+//    }
+
+//    @RequestMapping("/primaryAccount")
+//    public Account primaryAccount(@RequestParam("id") int id,
+//                                  @RequestParam("page") int page,
+//                                  @RequestParam("filter") String filter,
+//                                  Principal principal) {
+////        model.addAttribute("title", "Primary account");
+////        model.addAttribute("servlet", "primaryAccount");
+////        PrimaryAccount primaryAccount = (PrimaryAccount) accountService.getPrimaryAccount(id, principal.getName());
+////        complementResponce(model, primaryAccount, filter, principal, page);
+//        return null;
+//    }
 
 //    @RequestMapping("/savingAccount")
 //    public String savingAccount(@RequestParam("id") int id,

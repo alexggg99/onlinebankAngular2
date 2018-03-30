@@ -13,8 +13,4 @@ import javax.persistence.Enumerated;
 @Setter
 public class PrimaryAccount extends Account {
 
-    @Column(name = "currency")
-    @Enumerated(EnumType.STRING)
-    private Currency currency;
-
 }

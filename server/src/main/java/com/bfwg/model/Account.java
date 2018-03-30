@@ -1,6 +1,5 @@
 package com.bfwg.model;
 
-import com.bfwg.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +19,10 @@ public abstract class Account {
     private Long id;
     private int accountNumber;
     private BigDecimal accountBalance;
+
+    @Column(name = "currency")
+    @Enumerated(EnumType.STRING)
+    private Currency currency = Currency.EUR;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

@@ -8,11 +8,6 @@ import { MockApiService } from './service/mocks/api.service.mock';
 
 import { LoginGuard } from './guard';
 import { NotFoundComponent } from './not-found';
-import {
-  ApiCardComponent,
-  FooterComponent,
-  GithubComponent,
-} from './component';
 
 import {
   MatToolbarModule,
@@ -24,7 +19,6 @@ import {
   ApiService,
   AuthService,
   UserService,
-  FooService,
   ConfigService
 } from './service';
 
@@ -35,7 +29,6 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        FooterComponent,
       ],
       imports: [
         RouterTestingModule,
@@ -49,7 +42,6 @@ describe('AppComponent', () => {
         },
         AuthService,
         UserService,
-        FooService,
         ConfigService
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]

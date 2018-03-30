@@ -1,9 +1,9 @@
-<mat-card class="accountViewCard">
-  <mat-card-header>
-    <mat-card-title>Account</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <h2>Primary balance</h2>
+<mat-card [ngClass]="{'primaryAccountViewCard': type === 'p', 'savingAccountViewCard': type === 's'}">
+  <mat-card-content class="title">
+    <div fxLayout='row' fxLayoutAlign="space-between">
+      <span>{{title}}</span>
+      <span>{{account.accountBalance}}</span>
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button><span>View Details</span></button>

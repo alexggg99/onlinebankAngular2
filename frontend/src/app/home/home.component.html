@@ -1,5 +1,11 @@
-<div class="content" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+<div class="content" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
 
-    <account-card></account-card>
+    <div *ngFor="let item of primaryAccounts">
+      <account-card [type]="'p'" [account]="item"></account-card>
+    </div>
+
+     <div *ngFor="let item of savingAccounts">
+      <account-card [type]="'s'" [account]="item"></account-card>
+    </div>
 
 </div>

@@ -1,6 +1,24 @@
-.accountViewCard {
-  width: 340px;
-  background:rgba(255,205,210,.3)
+.primaryAccountViewCard {
+
+  max-width: 640px;
+  background:rgba(255,205,210,.3);
+
+  .title {
+    font-family: arial;
+    font-size: 1.7em;
+  }
+
+}
+
+.savingAccountViewCard {
+
+  max-width: 640px;
+  background:#ff4081;
+
+  .title {
+    font-family: arial;
+    font-size: 1.7em;
+  }
 }
 
 
