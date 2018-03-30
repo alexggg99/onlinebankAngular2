@@ -32,6 +32,11 @@ export const routes: Routes = [
     canActivate: [GuestGuard]
   },
   {
+    path: 'create-account',
+    component: HomeComponent,
+    canActivate: [GuestGuard]
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'

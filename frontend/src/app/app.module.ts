@@ -24,6 +24,7 @@ import { LoginComponent } from './login';
 import { LoginGuard, GuestGuard, AdminGuard } from './guard';
 import { NotFoundComponent } from './not-found';
 import { AccountMenuComponent } from './component/header/account-menu/account-menu.component';
+import { AccountLogicMenuComponent } from './component/header/account-logic-menu/account-logic-menu.component';
 import {
   HeaderComponent
 } from './component';
@@ -55,11 +56,13 @@ export function initUserFactory(userService: UserService) {
     LoginComponent,
     NotFoundComponent,
     AccountMenuComponent,
+    AccountLogicMenuComponent,
     ChangePasswordComponent,
     ForbiddenComponent,
     AdminComponent,
     SignupComponent,
-    CurrencyDirective
+    CurrencyDirective,
+    AccountLogicMenuComponent
   ],
   imports: [
     BrowserAnimationsModule,

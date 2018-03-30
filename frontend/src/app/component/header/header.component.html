@@ -1,7 +1,28 @@
 <mat-toolbar color="primary" class="app-navbar">
-  <button mat-button mat-ripple routerLink="/">
+  <button  mat-button mat-ripple routerLink="/">
     <span>Online bank</span>
   </button>
+
+  <button
+    class="greeting-button"
+    *ngIf="hasSignedIn()"
+    mat-button mat-ripple
+    [matMenuTriggerFor]="accountLogicMenu">
+    <span>Accounts</span>
+  </button>
+  <button
+    class="greeting-hamburger"
+    *ngIf="hasSignedIn()"
+    mat-icon-button mat-ripple
+    [matMenuTriggerFor]="accountLogicMenu">
+    <mat-icon>home</mat-icon>
+  </button>
+  <mat-menu #accountLogicMenu
+            class="app-header-accountMenu"
+            yposition="below"
+            [overlapTrigger]="false">
+    <account-logic-menu></account-logic-menu>
+  </mat-menu>
 
 
 
