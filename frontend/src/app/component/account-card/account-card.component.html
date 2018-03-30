@@ -2,7 +2,7 @@
   <mat-card-content class="title">
     <div fxLayout='row' fxLayoutAlign="space-between">
       <span>{{title}}</span>
-      <span>{{account.accountBalance}}</span>
+      <span [currency]="account.currency"><span class="margin-right"></span>{{account.accountBalance}}</span>
     </div>
   </mat-card-content>
   <mat-card-actions>

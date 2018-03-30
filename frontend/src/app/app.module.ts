@@ -40,6 +40,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
 import {AccountCardComponent} from "./component/account-card/account-card.component";
+import {CurrencyDirective} from "./directives/currency.directive";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -57,7 +58,8 @@ export function initUserFactory(userService: UserService) {
     ChangePasswordComponent,
     ForbiddenComponent,
     AdminComponent,
-    SignupComponent
+    SignupComponent,
+    CurrencyDirective
   ],
   imports: [
     BrowserAnimationsModule,
