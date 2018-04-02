@@ -1,15 +1,12 @@
 package com.bfwg.rest;
 
-import com.bfwg.model.PrimaryAccount;
-import com.bfwg.model.SavingAccount;
-import com.bfwg.model.User;
+import com.bfwg.model.*;
 import com.bfwg.repository.TransactionRepo;
 import com.bfwg.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -41,14 +38,11 @@ public class AccountController  {
         return accountService.getSavingAccount(username);
     }
 
-//    @RequestMapping(value = "/{username}")
-//    public List<Account> getAccountPrimaryAccounts(@PathVariable("username") String username) {
-////        model.addAttribute("title", "Primary account");
-////        model.addAttribute("servlet", "primaryAccount");
-//        List<Account> accounts = accountService.getAllAccounts(username);
-////        complementResponce(model, primaryAccount, filter, principal, page);
-//        return accounts;
-//    }
+    @PostMapping(value = "/account/primary")
+    public Account createPrimaryAccounts(@RequestBody Currency currency) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return accountService.createPrimaryAccount(currency, user.getUsername());
+    }
 
 //    @RequestMapping("/primaryAccount")
 //    public Account primaryAccount(@RequestParam("id") int id,

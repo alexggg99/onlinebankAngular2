@@ -1,0 +1,28 @@
+<div class="content">
+
+  <form *ngIf="!submitted" [formGroup]="form" (submit)="onSubmit()" #createAccountForm="ngForm">
+
+    <mat-card class="account-card">
+    <mat-card-header>
+      <mat-card-title><h2>Create account</h2></mat-card-title>
+    </mat-card-header>
+      <mat-card-content>
+        <p class="error" *ngIf="error">{{error}}</p>
+        <mat-form-field>
+          <mat-select formControlName="currency" placeholder="Select currency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency">
+              {{ currency.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="cancel()">CANCEL</button>
+        <button type="submit" mat-button [disabled]="!createAccountForm.form.valid">CREATE</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </form>
+
+</div>
+

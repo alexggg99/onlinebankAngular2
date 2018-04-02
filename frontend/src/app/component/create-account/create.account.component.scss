@@ -1,0 +1,11 @@
+.account-card {
+  max-width: 58%;
+}
+
+@media (max-width: 600px) {
+  .account-card {
+    max-width: 100%;
+  }
+}
+
+

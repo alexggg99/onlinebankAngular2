@@ -15,6 +15,7 @@ import {
   MatIconRegistry,
   MatProgressSpinnerModule
 } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import {
   AuthService,
   UserService,
   AccountService,
-  ConfigService
+  ConfigService,
+  CurrencyService
 } from './service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
@@ -42,6 +44,7 @@ import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
 import {AccountCardComponent} from "./component/account-card/account-card.component";
 import {CurrencyDirective} from "./directives/currency.directive";
+import {CreateAccountComponent} from "./component/create-account/create.account.component";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -61,6 +64,7 @@ export function initUserFactory(userService: UserService) {
     ForbiddenComponent,
     AdminComponent,
     SignupComponent,
+    CreateAccountComponent,
     CurrencyDirective,
     AccountLogicMenuComponent
   ],
@@ -75,6 +79,7 @@ export function initUserFactory(userService: UserService) {
     MatMenuModule,
     MatTooltipModule,
     MatButtonModule,
+    MatSelectModule,
     MatIconModule,
     MatInputModule,
     MatToolbarModule,
@@ -90,6 +95,7 @@ export function initUserFactory(userService: UserService) {
     AuthService,
     ApiService,
     UserService,
+    CurrencyService,
     ConfigService,
     MatIconRegistry,
     {

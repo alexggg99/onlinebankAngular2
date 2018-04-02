@@ -5,6 +5,7 @@ import {Account} from '../shared/models/account';
 
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import {Currency} from "../shared/models/currency";
 
 @Injectable()
 export class AccountService {
@@ -24,8 +25,12 @@ export class AccountService {
     return this.apiService.get(this._account_url + '/saving');
   }
 
-  getAccount(accountId: number) {
+  getAccount(accountId: number): Observable<Account> {
     return this.apiService.get(this._account_url + '/' + accountId);
+  }
+
+  createPrimaryAccount(currency: Currency) : Observable<Account> {
+    return this.apiService.post(this._account_url + '/primary', currency);
   }
 
 }

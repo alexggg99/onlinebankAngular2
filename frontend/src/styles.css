@@ -5,3 +5,11 @@
 body {
   margin: 0;
 }
+
+.error {
+  color: #D50000;
+}
+
+.success {
+  color: #8BC34A;
+}
