@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "account_type")
 public abstract class Account {
 
     @Id
