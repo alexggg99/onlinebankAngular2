@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders, HttpResponse, HttpRequest, HttpEventType, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/observable/throw';
 import { serialize } from 'app/shared/utilities/serialize';
+import {Router} from "@angular/router";
 
 export enum RequestMethod {
   Get = 'GET',
@@ -23,7 +24,7 @@ export class ApiService {
     'Content-Type': 'application/json'
   });
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient, private injector: Injector) { }
 
   get(path: string, args?: any): Observable<any> {
     const options = {
@@ -65,8 +66,8 @@ export class ApiService {
 
   // Display error if logged in, otherwise redirect to IDP
   private checkError(error: any): any {
-    if (error && error.status === 401) {
-      // this.redirectIfUnauth(error);
+    if (error && error.status === 403) {
+      this.injector.get(Router).navigate(['403'])
     } else {
       // this.displayError(error);
     }

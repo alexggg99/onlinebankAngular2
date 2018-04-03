@@ -5,3 +5,11 @@
 body {
   margin: 0;
 }
+
+.fa {
+  margin-right: 3px;
+}
+
+.error {
+  color: #D50000;
+}

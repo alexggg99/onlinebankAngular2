@@ -3,6 +3,7 @@ package com.bfwg.service.impl;
 import com.bfwg.model.*;
 import com.bfwg.repository.PrimaryAccountRepo;
 import com.bfwg.repository.SavingAccountRepo;
+import com.bfwg.rest.AccountController;
 import com.bfwg.service.AccountService;
 import com.bfwg.service.UserService;
 import com.bfwg.exception.GeneralException;
@@ -86,28 +87,23 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
-    public void manageAccount(String action, String accountId, BigDecimal amount, String username) {
-        Account account = null;
+    public void manageAccount(String action, AccountController.FormCommand command, String username) {
+        Account account = getAccount(command.getAccountId(), username);
         Calendar calendar = Calendar.getInstance();
-//        if(accountId.startsWith("P")) {
-//            account = getPrimaryAccount(Long.valueOf(accountId.substring(1)), username);
-//        } else {
-//            account = getSavingAccount(Long.valueOf(accountId.substring(1)), username);
-//        }
         if(account == null) {
             throw new GeneralException();
         }
         if ("deposit".equals(action)) {
-            account.setAccountBalance(account.getAccountBalance().add(amount));
+            account.setAccountBalance(account.getAccountBalance().add(command.getAmount()));
         } else {
-            account.setAccountBalance(account.getAccountBalance().subtract(amount));
+            account.setAccountBalance(account.getAccountBalance().subtract(command.getAmount()));
         }
         accountRepo.save(account);
 
-        Transaction transaction = new Transaction(new Timestamp(calendar.getTime().getTime()),"",
-                                                                        action,
-                                                                        "ok", amount.doubleValue(), account.getAccountBalance(), account);
-        transactionRepo.save(transaction);
+//        Transaction transaction = new Transaction(new Timestamp(calendar.getTime().getTime()),"",
+//                                                                        action,
+//                                                                        "ok", amount.doubleValue(), account.getAccountBalance(), account);
+//        transactionRepo.save(transaction);
 
     }
 

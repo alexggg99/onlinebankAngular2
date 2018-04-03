@@ -5,6 +5,7 @@ import {Account} from '../shared/models/account';
 
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import {AccountCommand} from "../shared/models/account-command";
 
 @Injectable()
 export class AccountService {
@@ -16,6 +17,10 @@ export class AccountService {
     private config: ConfigService
   ) { }
 
+  getAllAccounts() : Observable<Account[]> {
+    return this.apiService.get(this._account_url);
+  }
+
   getPrimaryAccounts(): Observable<Account[]> {
     return this.apiService.get(this._account_url + '/primary');
   }
@@ -26,6 +31,10 @@ export class AccountService {
 
   getAccount(accountId: number) {
     return this.apiService.get(this._account_url + '/' + accountId);
+  }
+
+  deposit(accountCommand: AccountCommand): Observable<Account> {
+    return this.apiService.post(this._account_url, accountCommand);
   }
 
 }

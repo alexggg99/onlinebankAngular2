@@ -15,6 +15,7 @@ import {
   MatIconRegistry,
   MatProgressSpinnerModule
 } from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
@@ -40,8 +41,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
-import {AccountCardComponent} from "./component/account-card/account-card.component";
-import {CurrencyDirective} from "./directives/currency.directive";
+import { AccountCardComponent } from "./component/account-card/account-card.component";
+import { CurrencyDirective } from "./directives/currency.directive";
+import { DepositComponent } from "./component/deposit/deposit.component";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -62,7 +64,8 @@ export function initUserFactory(userService: UserService) {
     AdminComponent,
     SignupComponent,
     CurrencyDirective,
-    AccountLogicMenuComponent
+    AccountLogicMenuComponent,
+    DepositComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -76,6 +79,7 @@ export function initUserFactory(userService: UserService) {
     MatTooltipModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectModule,
     MatInputModule,
     MatToolbarModule,
     MatCardModule,
