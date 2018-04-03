@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found';
 import { ChangePasswordComponent } from './change-password';
 import { ForbiddenComponent } from './forbidden';
 import { SignupComponent } from './signup';
+import { CreateAccountComponent } from './component/create-account/create.account.component';
 import { DepositComponent } from "./component/deposit/deposit.component";
 
 export const routes: Routes = [
@@ -34,7 +35,7 @@ export const routes: Routes = [
   },
   {
     path: 'create-account',
-    component: HomeComponent,
+    component: CreateAccountComponent,
     canActivate: [GuestGuard]
   },
   {

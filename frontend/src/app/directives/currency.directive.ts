@@ -14,9 +14,9 @@ export class CurrencyDirective implements OnInit{
 
   createIcon(cur: string) {
     var icon =  this.document.createElement("i");
-    if (this.currency == 'EUR') {
+    if (this.currency.name == 'EUR') {
       icon.setAttribute("class", "fa fa-euro");
-    } if (this.currency == 'USD') {
+    } else if (this.currency.name == 'USD') {
       icon.setAttribute("class", "fa fa-usd");
     } else {
       icon.setAttribute("class", "fa fa-rub");

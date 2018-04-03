@@ -35,13 +35,15 @@ import {
   AuthService,
   UserService,
   AccountService,
-  ConfigService
+  ConfigService,
+  CurrencyService
 } from './service';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
-import { AccountCardComponent } from "./component/account-card/account-card.component";
+import {AccountCardComponent} from "./component/account-card/account-card.component";
+import {CreateAccountComponent} from "./component/create-account/create.account.component";
 import { CurrencyDirective } from "./directives/currency.directive";
 import { DepositComponent } from "./component/deposit/deposit.component";
 
@@ -63,6 +65,7 @@ export function initUserFactory(userService: UserService) {
     ForbiddenComponent,
     AdminComponent,
     SignupComponent,
+    CreateAccountComponent,
     CurrencyDirective,
     AccountLogicMenuComponent,
     DepositComponent
@@ -94,6 +97,7 @@ export function initUserFactory(userService: UserService) {
     AuthService,
     ApiService,
     UserService,
+    CurrencyService,
     ConfigService,
     MatIconRegistry,
     {

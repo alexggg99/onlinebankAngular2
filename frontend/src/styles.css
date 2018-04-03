@@ -13,3 +13,7 @@ body {
 .error {
   color: #D50000;
 }
+
+.success {
+  color: #8BC34A;
+}

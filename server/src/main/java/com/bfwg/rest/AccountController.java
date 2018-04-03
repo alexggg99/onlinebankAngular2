@@ -4,6 +4,7 @@ import com.bfwg.model.Account;
 import com.bfwg.model.PrimaryAccount;
 import com.bfwg.model.SavingAccount;
 import com.bfwg.model.User;
+import com.bfwg.model.*;
 import com.bfwg.repository.TransactionRepo;
 import com.bfwg.service.AccountService;
 import lombok.Data;
@@ -16,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -49,6 +51,11 @@ public class AccountController  {
     @GetMapping(value = "/account")
     public List<Account> getAllAccounts(Model model) {
         return accountService.getAllAccounts((String) model.asMap().get("username"));
+    }
+    @PostMapping(value = "/account/primary")
+    public Account createPrimaryAccounts(@RequestBody Currency currency) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return accountService.createPrimaryAccount(currency, user.getUsername());
     }
 
     @GetMapping(value = "/account/primary")

@@ -3,3 +3,4 @@ export * from './user.service';
 export * from './config.service';
 export * from './auth.service';
 export * from './account.service';
+export * from './currency.service';
