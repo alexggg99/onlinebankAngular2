@@ -1,6 +1,6 @@
 <div class="content">
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" #depositForm="ngForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" #depositForm="ngForm" novalidate>
 
     <mat-card class="account-card">
       <mat-card-header>
@@ -11,7 +11,7 @@
 
 
         <mat-form-field class="select-width">
-          <mat-select formControlName="account" placeholder="Select account" ([value])="account" >
+          <mat-select formControlName="account" placeholder="Select account" ([value])="account" (change)="onAccountChange()" >
             <mat-option *ngFor="let account of accounts" [value]="account" [currency]="account.currency">
               {{ 'Account number: ' + account.accountNumber + ' balance: ' + account.accountBalance  }}
             </mat-option>
@@ -20,9 +20,11 @@
         </mat-form-field>
 
 
-      <mat-form-field>
+      <mat-form-field id="amountField">
         <input matInput type="number" placeholder="Amount" formControlName="amount">
-        <mat-error *ngIf="form.get('amount')?.invalid">Field is required</mat-error>
+        <currency-icon *ngIf="form.controls['account'].value" [value]="curAccountCurrency"></currency-icon>
+        <mat-error *ngIf="amount.errors && amount.errors.hasOwnProperty('required') && amount.errors.required">Field is required</mat-error>
+        <mat-error *ngIf="amount.errors && amount.errors.hasOwnProperty('isPositive') && !amount.errors.isPositive">Must be positive</mat-error>
       </mat-form-field>
 
 

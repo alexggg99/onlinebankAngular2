@@ -4,6 +4,7 @@ import {Account} from "../../shared/models/account";
 import {AccountService} from "../../service/account.service";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AccountCommand} from "../../shared/models/account-command";
+import {PositiveNumberValidator} from "../../shared/validators/positive-number";
 
 @Component({
   selector: 'deposit',
@@ -17,6 +18,7 @@ export class DepositComponent implements OnInit {
   error: any;
 
   returnUrl: string;
+  curAccountCurrency: string;
 
   constructor(
     private accountService: AccountService,
@@ -28,7 +30,7 @@ export class DepositComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       account : ['', Validators.compose([Validators.required])],
-      amount : ['', Validators.compose([Validators.required])]
+      amount : ['', Validators.compose([Validators.required, PositiveNumberValidator.mustBePositive])]
     });
     this.accountService.getAllAccounts().subscribe(
       res => {
@@ -36,6 +38,10 @@ export class DepositComponent implements OnInit {
       }
     );
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  }
+
+  get amount() {
+    return this.form.get("amount");
   }
 
   onSubmit() {
@@ -58,6 +64,11 @@ export class DepositComponent implements OnInit {
 
   cancel() {
     this.router.navigate([this.returnUrl])
+  }
+
+  onAccountChange() {
+    let val = this.form.controls['account'].value.currency.name.toLowerCase() == 'rur' ? 'rub' : this.form.controls['account'].value.currency.name.toLowerCase()
+    this.curAccountCurrency = val;
   }
 
 }

@@ -70,7 +70,9 @@ public class AccountController  {
 
     @PostMapping(value = "/account")
     public ResponseEntity<Account> depositAccount(@RequestBody FormCommand formCommand, Model model) {
-        accountService.manageAccount("deposit", formCommand, (String) model.asMap().get("username"));
+        if (formCommand.amount.intValue() > 0) {
+            accountService.manageAccount("deposit", formCommand, (String) model.asMap().get("username"));
+        }
         return new ResponseEntity<>(accountService.getAccount(formCommand.accountId, (String) model.asMap().get("username")), HttpStatus.OK);
     }
 

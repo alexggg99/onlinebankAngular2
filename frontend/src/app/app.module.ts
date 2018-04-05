@@ -46,6 +46,7 @@ import {AccountCardComponent} from "./component/account-card/account-card.compon
 import {CreateAccountComponent} from "./component/create-account/create.account.component";
 import { CurrencyDirective } from "./directives/currency.directive";
 import { DepositComponent } from "./component/deposit/deposit.component";
+import { CurrencyIconComponent } from "./component/currency-icon/currency.icon.component";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -68,7 +69,8 @@ export function initUserFactory(userService: UserService) {
     CreateAccountComponent,
     CurrencyDirective,
     AccountLogicMenuComponent,
-    DepositComponent
+    DepositComponent,
+    CurrencyIconComponent
   ],
   imports: [
     BrowserAnimationsModule,
