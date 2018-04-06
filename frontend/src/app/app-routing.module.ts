@@ -34,12 +34,17 @@ export const routes: Routes = [
     canActivate: [GuestGuard]
   },
   {
-    path: 'create-account',
+    path: 'create',
     component: CreateAccountComponent,
     canActivate: [GuestGuard]
   },
   {
-    path: 'deposit-account',
+    path: 'deposit',
+    component: DepositComponent,
+    canActivate: [GuestGuard]
+  },
+  {
+    path: 'withdraw',
     component: DepositComponent,
     canActivate: [GuestGuard]
   },

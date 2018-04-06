@@ -4,7 +4,7 @@
 
     <mat-card class="account-card">
       <mat-card-header>
-        <mat-card-title><h2>Deposit account</h2></mat-card-title>
+        <mat-card-title><h2>{{title}} account</h2></mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <p class="error" *ngIf="error">{{error}}</p>
@@ -31,7 +31,7 @@
       <!--</mat-card-content>-->
         <mat-card-actions>
           <button mat-button (click)="cancel()">CANCEL</button>
-          <button type="submit" mat-button [disabled]="!depositForm.form.valid">DEPOSIT</button>
+          <button type="submit" mat-button [disabled]="!depositForm.form.valid">{{title.toUpperCase()}}</button>
         </mat-card-actions>
       </mat-card-content>
     </mat-card>

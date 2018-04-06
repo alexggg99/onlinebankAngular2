@@ -13,6 +13,8 @@ import {PositiveNumberValidator} from "../../shared/validators/positive-number";
 })
 export class DepositComponent implements OnInit {
 
+  title: string;
+
   form: FormGroup;
   accounts: Account[];
   error: any;
@@ -28,6 +30,8 @@ export class DepositComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let routeUrl = this.route.snapshot.url[0].path;
+    this.title = routeUrl.charAt(0).toUpperCase() + routeUrl.slice(1);
     this.form = this.formBuilder.group({
       account : ['', Validators.compose([Validators.required])],
       amount : ['', Validators.compose([Validators.required, PositiveNumberValidator.mustBePositive])]
@@ -45,19 +49,26 @@ export class DepositComponent implements OnInit {
   }
 
   onSubmit() {
-    let accountCommand = new AccountCommand(this.form.get("account").value, this.form.get("amount").value);
+    let action = this.route.snapshot.url[0].path;
+    let accountCommand = new AccountCommand(action, this.form.get("account").value, this.form.get("amount").value);
     this.accountService.deposit(accountCommand)
       .mergeMap(() => this.accountService.getAllAccounts()).subscribe(
       res => {
-        this.form.get("amount").setValue(0);
+        this.form.controls["amount"].reset();
+        this.form.controls["amount"].setErrors(null);
         this.accounts = res;
         this.accounts.forEach((item, index) => {
           if (item.id == accountCommand.accountId) {
             this.form.get("account").setValue(this.accounts[index]);
           }
         })
+        this.error = null;
       }, err => {
-        this.error = 'Opps, server error !'
+        if (err.status == 400) {
+          this.error = err.error.errorMessage
+        } else {
+          this.error = 'Opps, server error !'
+        }
       }
     );
   }

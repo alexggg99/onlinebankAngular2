@@ -1,5 +1,7 @@
 package com.bfwg.rest;
 
+import com.bfwg.exception.ExceptionResponse;
+import com.bfwg.exception.NotEnoughAccountBalance;
 import com.bfwg.model.Account;
 import com.bfwg.model.PrimaryAccount;
 import com.bfwg.model.SavingAccount;
@@ -69,17 +71,25 @@ public class AccountController  {
     }
 
     @PostMapping(value = "/account")
-    public ResponseEntity<Account> depositAccount(@RequestBody FormCommand formCommand, Model model) {
+    public ResponseEntity<Account> manageAccount(@RequestBody FormCommand formCommand, Model model) {
         if (formCommand.amount.intValue() > 0) {
-            accountService.manageAccount("deposit", formCommand, (String) model.asMap().get("username"));
+            accountService.manageAccount(formCommand.getAction(), formCommand, (String) model.asMap().get("username"));
         }
         return new ResponseEntity<>(accountService.getAccount(formCommand.accountId, (String) model.asMap().get("username")), HttpStatus.OK);
+    }
+
+    @ExceptionHandler(NotEnoughAccountBalance.class)
+    public ResponseEntity<ExceptionResponse> handleNotEnoughBalance(NotEnoughAccountBalance ex) {
+        ExceptionResponse res = new ExceptionResponse();
+        res.setErrorMessage("Not enough balance");
+        return new ResponseEntity(res, HttpStatus.BAD_REQUEST);
     }
 
     @Data
     public static class FormCommand {
         private Long accountId;
         private BigDecimal amount;
+        private String action;
     }
 
 }

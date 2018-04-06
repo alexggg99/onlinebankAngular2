@@ -95,7 +95,9 @@ public class AccountServiceImpl implements AccountService {
         }
         if ("deposit".equals(action)) {
             account.setAccountBalance(account.getAccountBalance().add(command.getAmount()));
-        } else {
+        }
+        if ("withdraw".equals(action)) {
+            testAccountBalance(command.getAmount(), account);
             account.setAccountBalance(account.getAccountBalance().subtract(command.getAmount()));
         }
         accountRepo.save(account);
@@ -141,5 +143,12 @@ public class AccountServiceImpl implements AccountService {
                 "ok", amount.doubleValue(), accountFrom.getAccountBalance(), accountTo);
         transactionRepo.save(transactionFrom);
         transactionRepo.save(transactionTo);
+    }
+
+    private void testAccountBalance(BigDecimal amount, Account account) {
+        BigDecimal balance = account.getAccountBalance();
+        if (balance.compareTo(amount) < 0) {
+            throw new NotEnoughAccountBalance();
+        }
     }
 }
