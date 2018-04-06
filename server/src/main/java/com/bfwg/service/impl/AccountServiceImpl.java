@@ -87,25 +87,25 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional
-    public void manageAccount(String action, AccountController.FormCommand command, String username) {
+    public void manageAccount(AccountController.FormCommand command, String username) {
         Account account = getAccount(command.getAccountId(), username);
         Calendar calendar = Calendar.getInstance();
         if(account == null) {
             throw new GeneralException();
         }
-        if ("deposit".equals(action)) {
+        if ("deposit".equals(command.getAction())) {
             account.setAccountBalance(account.getAccountBalance().add(command.getAmount()));
         }
-        if ("withdraw".equals(action)) {
+        if ("withdraw".equals(command.getAction())) {
             testAccountBalance(command.getAmount(), account);
             account.setAccountBalance(account.getAccountBalance().subtract(command.getAmount()));
         }
         accountRepo.save(account);
 
-//        Transaction transaction = new Transaction(new Timestamp(calendar.getTime().getTime()),"",
-//                                                                        action,
-//                                                                        "ok", amount.doubleValue(), account.getAccountBalance(), account);
-//        transactionRepo.save(transaction);
+        Transaction transaction = new Transaction(new Timestamp(calendar.getTime().getTime()),"",
+                                                                        command.getAction(),
+                                                                        "ok", command.getAmount().doubleValue(), account.getAccountBalance(), account);
+        transactionRepo.save(transaction);
 
     }
 

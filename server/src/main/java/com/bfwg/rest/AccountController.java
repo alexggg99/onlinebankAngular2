@@ -54,6 +54,12 @@ public class AccountController  {
     public List<Account> getAllAccounts(Model model) {
         return accountService.getAllAccounts((String) model.asMap().get("username"));
     }
+
+    @GetMapping(value = "/account/{id}")
+    public Account getAccount(@PathVariable Long id, Model model) {
+        return accountService.getAccount(id, (String) model.asMap().get("username"));
+    }
+
     @PostMapping(value = "/account/primary")
     public Account createPrimaryAccounts(@RequestBody Currency currency) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -73,7 +79,7 @@ public class AccountController  {
     @PostMapping(value = "/account")
     public ResponseEntity<Account> manageAccount(@RequestBody FormCommand formCommand, Model model) {
         if (formCommand.amount.intValue() > 0) {
-            accountService.manageAccount(formCommand.getAction(), formCommand, (String) model.asMap().get("username"));
+            accountService.manageAccount(formCommand, (String) model.asMap().get("username"));
         }
         return new ResponseEntity<>(accountService.getAccount(formCommand.accountId, (String) model.asMap().get("username")), HttpStatus.OK);
     }

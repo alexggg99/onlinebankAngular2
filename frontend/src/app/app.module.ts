@@ -47,6 +47,8 @@ import {CreateAccountComponent} from "./component/create-account/create.account.
 import { CurrencyDirective } from "./directives/currency.directive";
 import { DepositComponent } from "./component/deposit/deposit.component";
 import { CurrencyIconComponent } from "./component/currency-icon/currency.icon.component";
+import {AccountDetailsComponent} from "./component/account-details/account.details.component";
+import {AccountResolver} from "./resolvers/account.resolver";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -70,7 +72,8 @@ export function initUserFactory(userService: UserService) {
     CurrencyDirective,
     AccountLogicMenuComponent,
     DepositComponent,
-    CurrencyIconComponent
+    CurrencyIconComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -102,6 +105,7 @@ export function initUserFactory(userService: UserService) {
     CurrencyService,
     ConfigService,
     MatIconRegistry,
+    AccountResolver,
     {
       'provide': APP_INITIALIZER,
       'useFactory': initUserFactory,

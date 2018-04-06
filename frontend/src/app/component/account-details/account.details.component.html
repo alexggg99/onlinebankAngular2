@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutAlign="center">
+  <div class="content">
+
+    <mat-card [ngClass]="{'primaryAccountViewCard': type === 'p', 'savingAccountViewCard': type === 's'}">
+      <div class="title">
+        <mat-card-title>
+          <div fxLayout='row' fxLayoutAlign="space-between">
+            <span>{{title}}</span>
+            <span [currency]="account.currency"><span class="margin-right"></span>{{account.accountBalance}}</span>
+          </div>
+        </mat-card-title>
+        <mat-card-subtitle><span>{{account.accountNumber}}</span></mat-card-subtitle>
+      </div>
+      <hr/>
+      <mat-card-content class="title">
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
+

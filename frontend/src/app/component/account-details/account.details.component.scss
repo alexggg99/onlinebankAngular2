@@ -1,0 +1,41 @@
+.content {
+  width: 60%;
+
+  .primaryAccountViewCard {
+
+    max-width: 640px;
+    background:rgba(255,205,210,.3);
+
+    .title {
+      font-family: arial;
+      font-size: 1.7em;
+
+      .margin-right {
+        margin-right: 5px;
+      }
+    }
+
+  }
+
+  .savingAccountViewCard {
+
+    max-width: 640px;
+    background:#ff4081;
+
+    .title {
+      font-family: arial;
+      font-size: 1.7em;
+
+      .margin-right {
+        margin-right: 5px;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 600px) {
+  .content {
+    width: 98%;
+  }
+}

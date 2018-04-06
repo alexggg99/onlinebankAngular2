@@ -10,6 +10,8 @@ import { ForbiddenComponent } from './forbidden';
 import { SignupComponent } from './signup';
 import { CreateAccountComponent } from './component/create-account/create.account.component';
 import { DepositComponent } from "./component/deposit/deposit.component";
+import {AccountDetailsComponent} from "./component/account-details/account.details.component";
+import {AccountResolver} from "./resolvers/account.resolver";
 
 export const routes: Routes = [
   {
@@ -47,6 +49,14 @@ export const routes: Routes = [
     path: 'withdraw',
     component: DepositComponent,
     canActivate: [GuestGuard]
+  },
+  {
+    path: 'account-details/:id',
+    component: AccountDetailsComponent,
+    canActivate: [GuestGuard],
+    resolve: {
+      account: AccountResolver
+    }
   },
   {
     path: '',

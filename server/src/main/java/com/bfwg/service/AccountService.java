@@ -15,6 +15,6 @@ public interface AccountService {
     List<PrimaryAccount> getPrimaryAccounts(String username);
     List<SavingAccount> getSavingAccount(String username);
     void saveAccount(Account account);
-    void manageAccount(String action, AccountController.FormCommand command, String username);
+    void manageAccount(AccountController.FormCommand command, String username);
     void transferBetweenAccounts(String accountIdFrom, String accountIdTo, BigDecimal amount, String username);
 }

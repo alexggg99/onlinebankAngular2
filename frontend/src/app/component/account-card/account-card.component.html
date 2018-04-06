@@ -6,7 +6,7 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button><span>View Details</span></button>
+    <button mat-button [routerLink]="['/account-details', account.id]" [queryParams]="{ t: type.toLowerCase()}"><span>View Details</span></button>
   </mat-card-actions>
 </mat-card>
 
