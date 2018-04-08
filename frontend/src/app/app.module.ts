@@ -13,9 +13,12 @@ import {
   MatCardModule,
   MatInputModule,
   MatIconRegistry,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatPaginatorModule,
+  MatSortModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
@@ -49,6 +52,7 @@ import { DepositComponent } from "./component/deposit/deposit.component";
 import { CurrencyIconComponent } from "./component/currency-icon/currency.icon.component";
 import {AccountDetailsComponent} from "./component/account-details/account.details.component";
 import {AccountResolver} from "./resolvers/account.resolver";
+import {TransactionTableComponent} from "./component/account-details/transaction-table/transaction.table.component";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -73,7 +77,8 @@ export function initUserFactory(userService: UserService) {
     AccountLogicMenuComponent,
     DepositComponent,
     CurrencyIconComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    TransactionTableComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -92,7 +97,10 @@ export function initUserFactory(userService: UserService) {
     MatToolbarModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [
     LoginGuard,

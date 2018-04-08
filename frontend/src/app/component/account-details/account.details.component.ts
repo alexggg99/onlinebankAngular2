@@ -30,7 +30,6 @@ export class AccountDetailsComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
     private accountService: AccountService
   ) { }
 
@@ -42,8 +41,5 @@ export class AccountDetailsComponent implements OnInit {
   }
 
 
-  cancel() {
-    this.router.navigate([this.returnUrl])
-  }
 
 }

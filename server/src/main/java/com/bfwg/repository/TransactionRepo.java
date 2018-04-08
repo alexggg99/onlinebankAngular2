@@ -12,4 +12,5 @@ import java.util.List;
 @Transactional
 public interface TransactionRepo extends PagingAndSortingRepository<Transaction, Long>, JpaSpecificationExecutor<Transaction> {
     List<Transaction> findByAccountAndAccountUserUsername(Account account, String username, Pageable pageRequest);
+    int countByAccount(Account account);
 }

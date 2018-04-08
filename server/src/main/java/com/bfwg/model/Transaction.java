@@ -1,5 +1,6 @@
 package com.bfwg.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,14 +24,16 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "account_id")
+    @JsonIgnore
     private Account account;
 
     public Transaction() {
     }
 
-    public Transaction(Timestamp date, String status, double amount, Account account) {
+    public Transaction(Timestamp date, String status, String type, double amount, Account account) {
         this.date = date;
         this.status = status;
+        this.type = type;
         this.amount = amount;
         this.account = account;
     }

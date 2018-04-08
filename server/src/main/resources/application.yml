@@ -1,5 +1,6 @@
 app:
   name: anuglar2-spring-jwt
+  itemsPerPage: 10
 
 jwt:
   header: Authorization
@@ -11,3 +12,4 @@ logging:
   level:
     org.springframework.web: ERROR
     com.bfwg: DEBUG
+

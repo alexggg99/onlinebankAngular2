@@ -7,10 +7,7 @@ import com.bfwg.model.PrimaryAccount;
 import com.bfwg.model.SavingAccount;
 import com.bfwg.model.User;
 import com.bfwg.model.*;
-import com.bfwg.repository.TransactionRepo;
-import com.bfwg.service.AccountService;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,63 +17,47 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @RestController
-@RequestMapping( value = "/api", produces = MediaType.APPLICATION_JSON_VALUE )
-public class AccountController  {
-
-    @Autowired
-    private AccountService accountService;
-
-    @Autowired
-    private TransactionRepo transactionRepo;
-
-//    @Value("${app.itemsPerPage}")
-//    private int itemsPerPage;
-
-    @ModelAttribute("username")
-    public String getUsername() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user != null ? user.getUsername() : null;
-    }
+@RequestMapping( value = "/api/account", produces = MediaType.APPLICATION_JSON_VALUE )
+public class AccountController extends AbstractController {
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
         webDataBinder.registerCustomEditor(BigDecimal.class, new CustomNumberEditor(BigDecimal.class, false));
     }
 
-    @GetMapping(value = "/account")
+    @GetMapping
     public List<Account> getAllAccounts(Model model) {
         return accountService.getAllAccounts((String) model.asMap().get("username"));
     }
 
-    @GetMapping(value = "/account/{id}")
+    @GetMapping(value = "/{id}")
     public Account getAccount(@PathVariable Long id, Model model) {
         return accountService.getAccount(id, (String) model.asMap().get("username"));
     }
 
-    @PostMapping(value = "/account/primary")
+    @PostMapping(value = "/primary")
     public Account createPrimaryAccounts(@RequestBody Currency currency) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return accountService.createPrimaryAccount(currency, user.getUsername());
     }
 
-    @GetMapping(value = "/account/primary")
+    @GetMapping(value = "/primary")
     public List<PrimaryAccount> getPrimaryAccounts(Model model) {
         return accountService.getPrimaryAccounts((String) model.asMap().get("username"));
     }
 
-    @GetMapping(value = "/account/saving")
+    @GetMapping(value = "/saving")
     public List<SavingAccount> getSavingAccounts(Model model) {
         return accountService.getSavingAccount((String) model.asMap().get("username"));
     }
 
-    @PostMapping(value = "/account")
+    @PostMapping
     public ResponseEntity<Account> manageAccount(@RequestBody FormCommand formCommand, Model model) {
         if (formCommand.amount.intValue() > 0) {
             accountService.manageAccount(formCommand, (String) model.asMap().get("username"));

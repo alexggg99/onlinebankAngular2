@@ -6,6 +6,7 @@ import com.bfwg.model.User;
 import com.bfwg.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 @RestController
 @RequestMapping( value = "/api/currency", produces = MediaType.APPLICATION_JSON_VALUE )
 public class CurrencyController {

@@ -11,9 +11,8 @@
         </mat-card-title>
         <mat-card-subtitle><span>{{account.accountNumber}}</span></mat-card-subtitle>
       </div>
-      <hr/>
-      <mat-card-content class="title">
-
+      <mat-card-content>
+        <transaction-table [account]="account"></transaction-table>
       </mat-card-content>
     </mat-card>
 
