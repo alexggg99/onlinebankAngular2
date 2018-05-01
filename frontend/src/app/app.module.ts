@@ -28,7 +28,8 @@ import { LoginComponent } from './login';
 import { LoginGuard, GuestGuard, AdminGuard } from './guard';
 import { NotFoundComponent } from './not-found';
 import { AccountMenuComponent } from './component/header/account-menu/account-menu.component';
-import { AccountLogicMenuComponent } from './component/header/account-logic-menu/account-logic-menu.component';
+import { AccountLogicMenuComponent, TransmitMenuComponent } from './component/header/account-logic-menu/account-logic-menu.component';
+import { TransmitComponent} from "./component/transmit/transmit.component";
 import {
   HeaderComponent
 } from './component';
@@ -53,6 +54,9 @@ import { CurrencyIconComponent } from "./component/currency-icon/currency.icon.c
 import {AccountDetailsComponent} from "./component/account-details/account.details.component";
 import {AccountResolver} from "./resolvers/account.resolver";
 import {TransactionTableComponent} from "./component/account-details/transaction-table/transaction.table.component";
+import {AmountFieldComponent} from "./component/amount-field/amount-field.component";
+import {AccountFieldComponent} from "./component/transmit/transmitField/account-field.component";
+import {TransferService} from "./service/transfer.service";
 
 export function initUserFactory(userService: UserService) {
     return () => userService.initUser();
@@ -75,10 +79,14 @@ export function initUserFactory(userService: UserService) {
     CreateAccountComponent,
     CurrencyDirective,
     AccountLogicMenuComponent,
+    TransmitMenuComponent,
     DepositComponent,
     CurrencyIconComponent,
     AccountDetailsComponent,
-    TransactionTableComponent
+    TransactionTableComponent,
+    TransmitComponent,
+    AmountFieldComponent,
+    AccountFieldComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -111,6 +119,7 @@ export function initUserFactory(userService: UserService) {
     ApiService,
     UserService,
     CurrencyService,
+    TransferService,
     ConfigService,
     MatIconRegistry,
     AccountResolver,

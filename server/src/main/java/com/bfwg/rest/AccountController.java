@@ -1,7 +1,5 @@
 package com.bfwg.rest;
 
-import com.bfwg.exception.ExceptionResponse;
-import com.bfwg.exception.NotEnoughAccountBalance;
 import com.bfwg.model.Account;
 import com.bfwg.model.PrimaryAccount;
 import com.bfwg.model.SavingAccount;
@@ -63,13 +61,6 @@ public class AccountController extends AbstractController {
             accountService.manageAccount(formCommand, (String) model.asMap().get("username"));
         }
         return new ResponseEntity<>(accountService.getAccount(formCommand.accountId, (String) model.asMap().get("username")), HttpStatus.OK);
-    }
-
-    @ExceptionHandler(NotEnoughAccountBalance.class)
-    public ResponseEntity<ExceptionResponse> handleNotEnoughBalance(NotEnoughAccountBalance ex) {
-        ExceptionResponse res = new ExceptionResponse();
-        res.setErrorMessage("Not enough balance");
-        return new ResponseEntity(res, HttpStatus.BAD_REQUEST);
     }
 
     @Data

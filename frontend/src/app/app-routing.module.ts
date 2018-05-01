@@ -12,6 +12,7 @@ import { CreateAccountComponent } from './component/create-account/create.accoun
 import { DepositComponent } from "./component/deposit/deposit.component";
 import {AccountDetailsComponent} from "./component/account-details/account.details.component";
 import {AccountResolver} from "./resolvers/account.resolver";
+import {TransmitComponent} from "./component/transmit/transmit.component";
 
 export const routes: Routes = [
   {
@@ -48,6 +49,11 @@ export const routes: Routes = [
   {
     path: 'withdraw',
     component: DepositComponent,
+    canActivate: [GuestGuard]
+  },
+  {
+    path: 'transmit',
+    component: TransmitComponent,
     canActivate: [GuestGuard]
   },
   {

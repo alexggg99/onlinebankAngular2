@@ -13,7 +13,33 @@ import { Router } from '@angular/router';
 })
 export class AccountLogicMenuComponent implements OnInit {
 
-  // TODO define user interface
+  user: any;
+
+  constructor(
+    private config: ConfigService,
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.user = this.userService.currentUser;
+  }
+
+  logout() {
+    this.authService.logout().subscribe(res => {
+      this.router.navigate(['/login']);
+    });
+  }
+}
+
+@Component({
+  selector: 'transmit-menu',
+  templateUrl: './transmit-menu.component.html',
+  styleUrls: ['./account-logic-menu.component.scss']
+})
+export class TransmitMenuComponent implements OnInit {
+
   user: any;
 
   constructor(

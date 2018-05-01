@@ -1,0 +1,8 @@
+<form [formGroup]="form"  novalidate>
+  <mat-form-field id="amountField">
+    <i [class]="icon" aria-hidden="true"></i> {{title}}
+    <input matInput type="number" formControlName="amount" class="amount-width" (change)="ngOnChanges()">
+    <mat-error *ngIf="form.get('amount')?.invalid">Field is required and must be positive</mat-error>
+  </mat-form-field>
+  <span *ngIf="isExchange" class="red-color"> =>  {{exchange_rate}}  {{accountTo.currency.name}} </span>
+</form>

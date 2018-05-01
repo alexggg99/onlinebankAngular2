@@ -18,4 +18,8 @@ export class CurrencyService {
     return this.apiService.get(this._currency_url);
   }
 
+  getExchageRate(cur1: Currency, cur2: Currency, amount: number): Observable<number> {
+    return this.apiService.get(this._currency_url + '/exchange/' + cur1.name + '/' + cur2.name + '/' + amount);
+  }
+
 }

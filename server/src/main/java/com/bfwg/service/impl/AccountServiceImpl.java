@@ -5,6 +5,7 @@ import com.bfwg.repository.PrimaryAccountRepo;
 import com.bfwg.repository.SavingAccountRepo;
 import com.bfwg.rest.AccountController;
 import com.bfwg.service.AccountService;
+import com.bfwg.service.ExchangeRateService;
 import com.bfwg.service.UserService;
 import com.bfwg.exception.GeneralException;
 import com.bfwg.exception.NotEnoughAccountBalance;
@@ -34,6 +35,8 @@ public class AccountServiceImpl implements AccountService {
     private TransactionRepo transactionRepo;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ExchangeRateService exchangeRateService;
 
     @Override
     public List<Account> getAllAccounts(String username) {
@@ -115,22 +118,17 @@ public class AccountServiceImpl implements AccountService {
         Account accountFrom = null;
         Account accountTo = null;
         Calendar calendar = Calendar.getInstance();
-//        if(accountIdFrom.startsWith("P")) {
-//            accountFrom = getPrimaryAccount(Long.valueOf(accountIdFrom.substring(1)), username);
-//        } else {
-//            accountFrom = getSavingAccount(Long.valueOf(accountIdFrom.substring(1)), username);
-//        }
-//        if(accountIdTo.startsWith("P")) {
-//            accountTo = getPrimaryAccount(Long.valueOf(accountIdTo.substring(1)), username);
-//        } else {
-//            accountTo = getSavingAccount(Long.valueOf(accountIdTo.substring(1)), username);
-//        }
+        if (accountIdFrom != null && accountIdTo != null) {
+            accountFrom = accountRepo.findOne(Long.valueOf(accountIdFrom));
+            accountTo = accountRepo.findOne(Long.valueOf(accountIdTo));
+        }
         if (accountFrom == null || accountTo == null || accountFrom.getId() == accountTo.getId()) {
             throw new GeneralException();
         }
         if (accountFrom.getAccountBalance().compareTo(amount) >= 0) {
             accountFrom.setAccountBalance(accountFrom.getAccountBalance().subtract(amount));
-            accountTo.setAccountBalance(accountTo.getAccountBalance().add(amount));
+            BigDecimal transferAmount = exchangeRateService.exchange(accountFrom.getCurrency(), accountTo.getCurrency(), amount);
+            accountTo.setAccountBalance(accountTo.getAccountBalance().add(transferAmount));
         } else {
             throw new NotEnoughAccountBalance();
         }

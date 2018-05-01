@@ -17,13 +17,32 @@
     [matMenuTriggerFor]="accountLogicMenu">
     <mat-icon>home</mat-icon>
   </button>
+  <button
+    class="greeting-button"
+    *ngIf="hasSignedIn()"
+    mat-button mat-ripple
+    [matMenuTriggerFor]="transmitMenu">
+    <span>Transmit</span>
+  </button>
+  <button
+    class="greeting-hamburger"
+    *ngIf="hasSignedIn()"
+    mat-icon-button mat-ripple
+    [matMenuTriggerFor]="transmitMenu">
+    <mat-icon>class</mat-icon>
+  </button>
   <mat-menu #accountLogicMenu
             class="app-header-accountMenu"
             yposition="below"
             [overlapTrigger]="false">
     <account-logic-menu></account-logic-menu>
   </mat-menu>
-
+  <mat-menu #transmitMenu
+            class="app-header-accountMenu"
+            yposition="below"
+            [overlapTrigger]="false">
+    <transmit-menu></transmit-menu>
+  </mat-menu>
 
 
   <div class="right">

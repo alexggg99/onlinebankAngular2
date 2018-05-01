@@ -1,0 +1,11 @@
+
+
+<mat-form-field [formGroup]="form" class="select-width">
+  <mat-select formControlName="accountTo" placeholder="Select account from" ([value])="accountTo">
+    <mat-option *ngFor="let accountTo of accountsTo" [value]="accountTo"
+                [currency]="accountTo.currency">
+      {{ 'Account number: ' + accountTo.accountNumber + ' balance: ' + accountTo.accountBalance + ' ' + accountTo.currency.name}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="form.get('accountTo')?.invalid">Field is required</mat-error>
+</mat-form-field>
